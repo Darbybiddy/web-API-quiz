@@ -1,0 +1,1 @@
+var questions =("what does HTML stand for?" "What does css stand for?" "what is the purpose of JavaScript")
