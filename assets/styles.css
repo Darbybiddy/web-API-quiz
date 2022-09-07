@@ -66,3 +66,7 @@ footer {
 .submit-btn {
   padding: 10px;
 }
+
+.hide {
+  display: none;
+}
