@@ -70,3 +70,8 @@ footer {
 .hide {
   display: none;
 }
+
+.input-style {
+  width: 25%;
+  
+}
