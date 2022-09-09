@@ -1,17 +1,18 @@
-## 04 Web APIs: Code Quiz
-As you proceed in your career as a web developer, you will probably be asked to complete a coding assessment, which is typically a combination of multiple-choice questions and interactive challenges. For this challenge, you will build a timed code quiz that's made up of multiple-choice questions. This app will run in the browser and feature dynamically updated HTML and CSS powered by your JavaScript code. It will also feature a clean and polished user interface and be responsive, ensuring that it adapts to multiple screen sizes.
+## Web API Timed Quiz
+
+## Overview
+I was tasked to make a timed quiz that has the capability to answer the questions and subtract time for wrong answers. at the end 
 
 ## User Story
 AS A coding boot camp student
 I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
 SO THAT I can gauge my progress compared to my peers
 
-## Acceptance Criteria
-GIVEN I am taking a code quiz
+
+## Image
+(./assets/images/(./Images/01-solved-screenshot.png)
+
+## Links
 
 
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered 
-THEN the game is over
 

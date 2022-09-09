@@ -4,8 +4,8 @@ var startButton = document.querySelector("#start");
 var quizContainer = document.querySelector(".quiz-body");
 var questionData = document.querySelector(".quiz-questions");
 var nextButton = document.querySelector("#next");
-var timeLeft = 15;
-
+var timeLeft = 30;
+var number = 0;
 
 var questions = [
   {
@@ -64,15 +64,17 @@ var questions = [
   },
 ];
 
-var number = 0;
-
-// function gradeUserChoice(index, correctChoice) {
-//     // do something now that the the click is heard
-//     var liText = listItemsEl[index].textContent;
-//     if (liText == correctChoice) {
-//         console.log('You selected the correct answer!');
-//     }
-// }
+function countdown() {
+  timeInterval = setInterval(function () {
+    timerEl.textContent = timeLeft + " seconds remaining";
+    if (timeLeft <= 0) {
+      timerEl.textContent = "Times up!";
+      clearInterval(timeInterval);
+      promptUserInitials();
+    }
+    timeLeft--;
+  }, 1000);
+}
 
 function showQuestions() {
   quizContainer.classList.remove("hide");
@@ -80,70 +82,61 @@ function showQuestions() {
   var correctChoice = questions[number].correctAnswers;
   console.log(correctChoice);
   for (var i = 0; i < 4; i++) {
-    var choiceText = questions[number].choices[i];
-    console.log(choiceText);
-    listItemsEl[i].textContent = choiceText;
-    listItemsEl[i].addEventListener("click", function () {
-        console.log('click heard');
-      if (choiceText == questions[number].correctAnswers) {
+    listItemsEl[i].textContent = questions[number].choices[i];
+    listItemsEl[i].addEventListener("click", function (event) {
+      console.log("click heard");
+      console.log(number);
+      console.log(event.target.textContent, questions[number].correctAnswers);
+      if (event.target.textContent == questions[number].correctAnswers) {
+        number++;
         console.log("You selected the correct answer!");
-
       } else {
-        console.log('Didnt work');
+        number++;
+        timeLeft = timeLeft - 5
+        console.log("Didnt work");
+      
       }
-    });
+    }); 
   }
-  number++;
 }
 
-function countdown() {
-    timeInterval = setInterval(function () {
-        timerEl.textContent = timeLeft + ' seconds remaining';
-        if (timeLeft <= 0) {
-            timerEl.textContent = 'Times up!';
-            clearInterval(timeInterval);
-            promptUserInitials();
-        }
-        timeLeft--;
-    }, 1000);
-}
-
-function promptUserInitials(){
-    console.log('initials here');
-    quizContainer.replaceChildren();
-    var inputField = document.createElement('input');
-    // set its styling
-    inputField.setAttribute('class', 'input-style')
-    // then append inputField to quizContainer
-    var submitButton = document.createElement('button');
-    submitButton.textContent = 'CLick here to submit your name';
-    quizContainer.append(inputField);
-    quizContainer.append(submitButton);
+function promptUserInitials() {
+  console.log("initials here");
+  quizContainer.replaceChildren();
+  var inputField = document.createElement("input");
+  // set its styling
+  inputField.setAttribute("class", "input-style");
+  // then append inputField to quizContainer
+  var submitButton = document.createElement("button");
+  submitButton.textContent = "CLick here to submit your name";
+  quizContainer.append(inputField);
+  quizContainer.append(submitButton);
+  submitButton.addEventListener("click", function(){
+    console.log("Initals Submitted")
+  })
 }
 
 startButton.addEventListener("click", function () {
   showQuestions();
 
-  //ToDo: need to make a function to start the timer when the start button is clicked to begin the quiz.
-  //add a event listener to the timer when the button is clicked.
-
-
-
   nextButton.addEventListener("click", function () {
     var quizContainer = document.querySelector(".quiz-body");
+
+      number = number + 1;
 
     var questionData = document.querySelector(".quiz-questions");
     questionData.innerHTML = questions[number].question;
 
-    number = number + 1;
+    
 
     for (var i = 0; i < listItemsEl.length; i++) {
       listItemsEl[i].textContent = questions[number].choices[i];
     }
+   
   });
 });
 
 //need to call a event listener to the list answers.
 // need to add a form to enter initials when the game is over.
 
-startButton.addEventListener('click', countdown);
+startButton.addEventListener("click", countdown);
